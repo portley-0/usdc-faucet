@@ -79,7 +79,7 @@ const Faucet = () => {
             </p>
           )}
           {txHash && (
-            <p className="mt-4">
+            <p className="mt-4 font-semibold">
               Transaction sent:{" "}
               <a
                 href={`https://explorer.avax-test.network/tx/${txHash}`}
