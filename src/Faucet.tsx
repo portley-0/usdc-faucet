@@ -85,14 +85,14 @@ const Faucet = () => {
                 href={`https://explorer.avax-test.network/tx/${txHash}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-500 underline"
+                className="text-blue-500 underline font-semibold"
               >
                 {txHash}
               </a>
             </p>
           )}
           {isSuccess && (
-            <p className="text-green-600 mt-4">
+            <p className="text-green-600 mt-4 font-semibold">
               Success! mUSDC minted.
             </p>
           )}
