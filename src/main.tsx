@@ -32,7 +32,7 @@ const connectors = connectorsForWallets(
         toPrivyWallet({
           id: 'cm04asygd041fmry9zmcyn5o5',
           name: 'Abstract (Google)',
-          iconUrl: '/images/abstract.png'
+          iconUrl: '/abstract.png'
         }),
         coreWallet,
         rabbyWallet,
