@@ -9,14 +9,19 @@ const USDC_ADDRESS = "0xB1cC53DfF11c564Fbe22145a0b07588e7648db74";
 console.log("App mounted");
 
 const ForceFuji = () => {
-  const { isConnected } = useAccount();
+  const { status } = useAccount(); 
   const { switchChain } = useSwitchChain();
 
+
   useEffect(() => {
-    if (isConnected) {
-      switchChain({ chainId: avalancheFuji.id })
+    if (status === 'connected') {
+      const timeout = setTimeout(() => {
+        switchChain({ chainId: avalancheFuji.id });
+      }, 300); // wait 300ms
+  
+      return () => clearTimeout(timeout);
     }
-  }, [isConnected, switchChain]);
+  }, [status, switchChain]);
 
   return null;
 };
