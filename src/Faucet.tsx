@@ -1,11 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
-import { useAccount, useWalletClient } from "wagmi";
+import {  useAccount, useSwitchChain, useWalletClient } from "wagmi";
+import { avalancheFuji } from "wagmi/chains";
 import { ethers } from "ethers";
 import MockUSDC from "./abi/MockUSDC.json" with { type: "json" };
 
 const USDC_ADDRESS = "0xB1cC53DfF11c564Fbe22145a0b07588e7648db74";
 console.log("App mounted");
+
+const ForceFuji = () => {
+  const { isConnected } = useAccount();
+  const { switchChain } = useSwitchChain();
+
+  useEffect(() => {
+    if (isConnected) {
+      switchChain({ chainId: avalancheFuji.id });
+    }
+  }, [isConnected, switchChain]);
+
+  return null;
+};
 
 const Faucet = () => {
   const { address, isConnected } = useAccount();
@@ -51,6 +65,7 @@ const Faucet = () => {
 
   return (
     <div className="relative min-h-screen">
+      <ForceFuji />
       <div className="absolute top-4 right-4">
         <ConnectButton />
       </div>
