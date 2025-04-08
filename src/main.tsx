@@ -52,7 +52,7 @@ const config = createConfig({
   chains: [avalancheFuji],
   connectors,
   transports: {
-    [avalancheFuji.id]: http(),
+    [avalancheFuji.id]: http('https://rpc.ankr.com/avalanche_fuji'),
   },
 });
 

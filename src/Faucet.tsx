@@ -14,7 +14,7 @@ const ForceFuji = () => {
 
   useEffect(() => {
     if (isConnected) {
-      switchChain({ chainId: avalancheFuji.id });
+      switchChain({ chainId: avalancheFuji.id })
     }
   }, [isConnected, switchChain]);
 
