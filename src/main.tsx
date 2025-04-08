@@ -52,7 +52,7 @@ const config = createConfig({
   chains: [avalancheFuji],
   connectors,
   transports: {
-    [avalancheFuji.id]: http('https://rpc.ankr.com/avalanche_fuji'),
+    [avalancheFuji.id]: http('https://avalanche-fuji.public.blastapi.io'),
   },
 });
 
