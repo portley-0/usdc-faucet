@@ -14,34 +14,12 @@ import {
 } from "@rainbow-me/rainbowkit/wallets";
 import { toPrivyWallet } from '@privy-io/cross-app-connect/rainbow-kit';
 import { createConfig, http, WagmiProvider } from "wagmi";
-import type { Chain } from "wagmi/chains";
+import { avalancheFuji } from "wagmi/chains";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import Faucet from "./Faucet.jsx";
 import "./styles/tailwind.css";
-
-const avalancheFujiPrivySafe: Chain = {
-  id: 43113,
-  name: 'Avalanche Fuji (Privy Safe)',
-  nativeCurrency: {
-    name: 'Avalanche',
-    symbol: 'AVAX',
-    decimals: 18,
-  },
-  rpcUrls: {
-    default: {
-      http: ['https://api.liveduel-demo-2.app/rpc'],
-    },
-    public: {
-      http: ['https://api.liveduel-demo-2.app/rpc'],
-    },
-  },
-  blockExplorers: {
-    default: { name: 'Snowtrace', url: 'https://testnet.snowtrace.io' },
-  },
-  testnet: true,
-};
 
 const queryClient = new QueryClient();
 
@@ -71,10 +49,10 @@ const connectors = connectorsForWallets(
 );
 
 const config = createConfig({
-  chains: [avalancheFujiPrivySafe],
+  chains: [avalancheFuji],
   connectors,
   transports: {
-    [avalancheFujiPrivySafe.id]: http('https://api.liveduel-demo-2.app/rpc'),
+    [avalancheFuji.id]: http('https://api.avax-test.network/ext/bc/C/rpc'),
   },
 });
 
@@ -82,7 +60,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <WagmiProvider config={config}>
       <QueryClientProvider client={queryClient}>
-        <RainbowKitProvider chains={[avalancheFujiPrivySafe]} theme={darkTheme()}>
+        <RainbowKitProvider chains={[avalancheFuji]} theme={darkTheme()}>
           <Faucet />
         </RainbowKitProvider>
       </QueryClientProvider>
